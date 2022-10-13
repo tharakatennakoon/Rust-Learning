@@ -1,5 +1,6 @@
 mod hello;
 
+use hello::casual;
 fn main(){
     println!("Hello World");
 
@@ -9,6 +10,9 @@ fn main(){
     hello::casual::greeting();
     
     crate::hello::casual::english(); // absolute path
+
+    //since we add use statement
+    casual::english();
 }
 
 // *******************************************************

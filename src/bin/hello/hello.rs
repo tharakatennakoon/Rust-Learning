@@ -14,6 +14,7 @@ fn english() {
     println!("hello");
 }
 
+// this function also cannot be accessed from outside of the module
 fn test() {
     // cannot acccess since not public
     // casual::test();

@@ -58,7 +58,6 @@ pub fn add_two_numbers(l1: Option<Box<ListNode>>, l2: Option<Box<ListNode>>) -> 
     
     if c > 0 {
         temp.next = Some(Box::new(ListNode::new(c)));
-        temp = temp.next.as_mut().unwrap();
     }
 
     return out.next;

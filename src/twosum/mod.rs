@@ -20,12 +20,13 @@ pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
 
 #[cfg(test)]
 mod tests_twosum {
+    use super::two_sum;
 
     #[test]
     fn test1()
     {
         let input:Vec<i32> = vec![2,7,11,15];
-        let ret:Vec<i32> = crate::twosum::two_sum(input, 9);
+        let ret:Vec<i32> = two_sum(input, 9);
 
         assert_eq!(ret.len(), 2);
         assert_eq!(ret[0], 0);
@@ -36,7 +37,7 @@ mod tests_twosum {
     fn test2()
     {
         let input:Vec<i32> = vec![3,2,4];
-        let ret:Vec<i32> = crate::twosum::two_sum(input, 6);
+        let ret:Vec<i32> = two_sum(input, 6);
 
         assert_eq!(ret.len(), 2);
         assert_eq!(ret[0], 1);

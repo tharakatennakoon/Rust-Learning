@@ -65,7 +65,7 @@ fn is_anagram_3(s:String, t:String) -> bool {
 
 #[cfg(test)]
 mod tests_valid_anagram {
-    use crate::valid_anagram::is_anagram;
+    use super::is_anagram;
 
     #[test]
     fn test1() {
@@ -94,7 +94,7 @@ mod tests_valid_anagram {
 
 #[cfg(test)]
 mod tests_valid_anagram2 {
-    use crate::valid_anagram::is_anagram_2;
+    use super::is_anagram_2;
 
     #[test]
     fn test1() {
@@ -123,7 +123,7 @@ mod tests_valid_anagram2 {
 
 #[cfg(test)]
 mod tests_valid_anagram3 {
-    use crate::valid_anagram::is_anagram_3;
+    use super::is_anagram_3;
 
     #[test]
     fn test1() {

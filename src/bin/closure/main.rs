@@ -2,8 +2,8 @@ mod basic;
 
 fn main() {
     basic::basic();
+    basic::capturing();
+    basic::closure_clone();
 
-    basic::basic1();
 
-    basic::basic2();
 }

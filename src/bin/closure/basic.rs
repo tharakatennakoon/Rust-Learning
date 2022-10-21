@@ -38,14 +38,14 @@ pub fn basic() {
     //println!("{}", vec_test.len());
 }
 
-pub fn basic1() {
+pub fn capturing() {
     let mut test_vec = vec![1, 2, 3, 4, 5, 6];
     let j = 10;
 
     // Closure, since we are only accessing test_vec, not need add mut or move
     // this is imuttable borrow
     let closure = || -> i32 { test_vec.iter().sum() };
-    println!("[basic1] 1 : Vec Sum : {}", closure());
+    println!("[capturing] 1 : Vec Sum : {}", closure());
 
     // Closure, sice we use test_vec mutable borrowing, need to make closure mutable
     let mut closure_mut = |i: i32| {
@@ -63,10 +63,39 @@ pub fn basic1() {
     // println!("vec size {}, {:?}", i, test_vec);
 
     let i = closure_mut(20);
-    println!("[basic1] 2 : vec size {}, {:?}", i, test_vec);
+    println!("[capturing] 2 : vec size {}, {:?}", i, test_vec);
+
+    // ther test_vec can be moved after last call to closure_mut
+    // move test_vec to a Box
+    let test_vec_box = Box::new(test_vec);
+
+    let closure_box = || {
+        println!("[capturing] 3 closure_box : vec {:?}", test_vec_box);
+    };
+
+    closure_box();
+
+    // since closure_box only do immutable borrowing, we can print the values here 
+    println!("[capturing] 4 closure_box after : vec {:?}", test_vec_box);
+
+    // drop the test_vec_box
+    // since the mem is drop inside of the closure, closure will move the captured variable
+    let test_vec_box_clone = test_vec_box.clone();
+    let closure_box_drop = || {
+        println!("[capturing] 5 closure_box_drop : vec {:?}", test_vec_box);
+        println!("[capturing] 6 closure_box_drop : vec clone {:?}", test_vec_box_clone);
+        drop(test_vec_box);
+    };
+
+    closure_box_drop();
+
+    // compile error due to mem drop
+    // println!("[capturing] 6 closure_box_drop after : vec {:?}", test_vec_box);
+    // since only test_vec_box is move, test_vec_box_clone can use after calling the closure
+    println!("[capturing] 6 closure_box_drop after : vec clone {:?}", test_vec_box_clone);
 }
 
-pub fn basic2() {
+pub fn closure_clone() {
     let mut test_vec = vec![1, 2, 3, 4, 5, 6];
     let j = 10;
 
@@ -85,7 +114,7 @@ pub fn basic2() {
     let closure1 = closure.clone();
 
     test_vec = closure1(10);
-    println!("[basic2] 1 : vec size {:?}", test_vec);
+    println!("[closure_clone] 1 : vec size {:?}", test_vec);
 
     // Following line cause error
     // closure cannot be invoked more than once because it moves the variable `test_vec` out of its environment
@@ -93,5 +122,8 @@ pub fn basic2() {
     // let test_vec = closure1(20);
 
     test_vec = closure(20);
-    println!("[basic2] 2 : vec size {:?}", test_vec);
+    println!("[closure_clone] 2 : vec size {:?}", test_vec);
+
+    // Todo
+    // check custom structure need to implement clone trait if closure is cloned
 }

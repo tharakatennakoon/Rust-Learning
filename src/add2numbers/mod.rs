@@ -44,7 +44,7 @@ pub fn add_two_numbers(l1: Option<Box<ListNode>>, l2: Option<Box<ListNode>>) -> 
             q_f = true;
         }
 
-        if (p_f && q_f) {
+        if p_f && q_f {
             break;
         }
 
@@ -64,7 +64,7 @@ pub fn add_two_numbers(l1: Option<Box<ListNode>>, l2: Option<Box<ListNode>>) -> 
 }
 
 #[cfg(test)]
-mod tests_add2numbers {
+mod test_add2numbers {
     use super::add_two_numbers;
     use super::ListNode;
 

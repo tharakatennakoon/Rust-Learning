@@ -96,11 +96,6 @@ pub fn first_uniq_char3(s: String) -> i32 {
     return -1;
 }
 
-pub fn first_uniq_char4(s: String) -> i32 {
-    return -1;
-}
-
-
 #[cfg(test)]
 mod test_first_unique_character {
     use super::first_uniq_char as test_fn;
@@ -234,71 +229,6 @@ mod test_first_unique_character2 {
 #[cfg(test)]
 mod test_first_unique_character3 {
     use super::first_uniq_char3 as test_fn;
-
-    #[test]
-    fn test1() {
-        let s = "leetcode".to_owned();
-        let expected = 0;
-
-        let output = test_fn(s);
-
-        assert_eq!(output, expected);
-    }
-
-    #[test]
-    fn test2() {
-        let s = "leetleetcode".to_owned();
-        let expected = 8;
-
-        let output = test_fn(s);
-
-        assert_eq!(output, expected);
-    }
-
-    #[test]
-    fn test3() {
-        let s = "loveleetcode".to_owned();
-        let expected = 2;
-
-        let output = test_fn(s);
-
-        assert_eq!(output, expected);
-    }
-
-    #[test]
-    fn test4() {
-        let s = "".to_owned();
-        let expected = -1;
-
-        let output = test_fn(s);
-
-        assert_eq!(output, expected);
-    }
-
-    #[test]
-    fn test5() {
-        let s = "e".to_owned();
-        let expected = 0;
-
-        let output = test_fn(s);
-
-        assert_eq!(output, expected);
-    }
-
-    #[test]
-    fn test6() {
-        let s = "ee".to_owned();
-        let expected = -1;
-
-        let output = test_fn(s);
-
-        assert_eq!(output, expected);
-    }
-}
-
-#[cfg(test)]
-mod test_first_unique_character4 {
-    use super::first_uniq_char4 as test_fn;
 
     #[test]
     fn test1() {

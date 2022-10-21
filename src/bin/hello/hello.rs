@@ -15,6 +15,7 @@ fn english() {
 }
 
 // this function also cannot be accessed from outside of the module
+#[allow(dead_code)]
 fn test() {
     // cannot acccess since not public
     // casual::test();
@@ -32,6 +33,7 @@ pub mod casual {
     }
 
     // this function is cannot accessed by supper module
+    #[allow(dead_code)]
     fn test() {
         print!("test");
     }

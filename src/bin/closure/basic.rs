@@ -55,6 +55,7 @@ pub fn capturing() {
         test_vec.len()
     };
 
+    #[allow(unused_variables)]
     let i = closure_mut(10);
 
     // this line cause following error

@@ -1,6 +1,6 @@
 use std::{collections::HashSet, hash::Hash};
 
-pub fn unique<T>(mut nums : Vec<T>) -> Vec<T>
+pub fn unique<T>(nums : Vec<T>) -> Vec<T>
     where T : Ord + Copy + Hash {
 
     if nums.is_empty() || nums.len() == 1{

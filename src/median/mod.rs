@@ -13,21 +13,21 @@ pub fn median<T>(mut num_array : Vec<T> ) -> Option<T>
     //num_array.sort(); // This cannot be used as float types does not implement Ord trait
     num_array.sort_by(|a,b| a.partial_cmp(b).unwrap());
 
-    if len == 0 {
-        return None;
+    let med = if len == 0 {
+        None
     }
     else if len%2 != 0 {
         let index = len / 2;
-        let median = num_array[index];
-        return Some(median);
+        Some(num_array[index])
     }
     else {
         let index1 = len / 2;
-        let index2 = index1 - 1;
-        
+        let index2 = index1 - 1;        
         let median = (num_array[index1] + num_array[index2]) / T::from_i32(2).unwrap();
-        return Some(median);
-    }
+        Some(median)
+    };
+
+    return med;
 }
 
 #[cfg(test)]

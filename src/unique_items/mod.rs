@@ -1,21 +1,25 @@
 use std::{collections::HashSet, hash::Hash};
 
-pub fn unique<T>(nums : &mut Vec<T>)
+pub fn unique<T>(mut nums : Vec<T>) -> Vec<T>
     where T : Ord + Copy + Hash {
+
+    if nums.is_empty() || nums.len() == 1{
+        return nums;
+    }
     
-    if nums.is_empty(){
-        return;
-    }
-
     let mut num_set:HashSet<T> = HashSet::new();
+    let mut unique_vec : Vec<T> = vec![];
 
-    for (index, num) in nums.iter_mut().enumerate() {
-        if num_set.contains(num) {
-            nums.remove(index);
+    for num in nums {
+        if num_set.contains(&num) {
+            continue;
         }
+
+        num_set.insert(num);
+        unique_vec.push(num);
     }
-
-
+    
+    return unique_vec;
 }
 
 #[cfg(test)]
@@ -24,13 +28,13 @@ mod test_unique {
 
     #[test]
     fn test_i32_empty(){
-        let mut nums:Vec<i32> = vec![];
+        let nums:Vec<i32> = vec![];
 
         let expected:Vec<i32> = vec![];
 
-        test_fn(&mut nums);
+        let result = test_fn(nums);
 
-        assert_eq!(nums, expected);
+        assert_eq!(result, expected);
 
     }
 
@@ -40,9 +44,9 @@ mod test_unique {
 
         let expected:Vec<i32> = vec![1,2,3];
 
-        test_fn(&mut &nums);
+        let result = test_fn(nums);
 
-        assert_eq!(nums, expected);
+        assert_eq!(result, expected);
 
     }
 
@@ -52,10 +56,20 @@ mod test_unique {
 
         let expected:Vec<i32> = vec![1, 2, 3];
 
-        test_fn(&mut &nums);
+        let result = test_fn(nums);
 
-        assert_eq!(nums, expected);
+        assert_eq!(result, expected);
+    }
 
+    #[test]
+    fn test_i32_duplicate_unsorted() {
+        let nums:Vec<i32> = vec![3, 1, 1, 2];
+
+        let expected:Vec<i32> = vec![3, 1, 2];
+
+        let result = test_fn(nums);
+
+        assert_eq!(result, expected);
     }
 
     #[test]
@@ -64,9 +78,8 @@ mod test_unique {
 
         let expected:Vec<i8> = vec![];
 
-        test_fn(&mut &nums);
+        let result = test_fn(nums);
 
-        assert_eq!(nums, expected);
-
+        assert_eq!(result, expected);
     }
 }

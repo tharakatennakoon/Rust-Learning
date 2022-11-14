@@ -11,3 +11,5 @@ pub mod median;
 pub mod unique_items;
 
 pub mod print;
+
+pub mod insensitive_sort;

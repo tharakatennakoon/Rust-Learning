@@ -13,3 +13,5 @@ pub mod unique_items;
 pub mod print;
 
 pub mod insensitive_sort;
+
+pub mod group_anagrams;

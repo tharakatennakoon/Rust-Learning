@@ -17,3 +17,5 @@ pub mod insensitive_sort;
 pub mod group_anagrams;
 
 pub mod top_k_frequent;
+
+pub mod find_median_sorted_arrays;

@@ -1,6 +1,8 @@
-use std::collections::HashMap;
+//https://leetcode.com/problems/group-anagrams/
 
 pub fn group_anagrams(strs: Vec<String>) -> Vec<Vec<String>> {
+    use std::collections::HashMap;
+
     let mut output : Vec<Vec<String>> = vec![];
     let mut cmaps : HashMap<String, usize> = HashMap::new();
 

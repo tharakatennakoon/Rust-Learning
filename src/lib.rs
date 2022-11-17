@@ -15,3 +15,5 @@ pub mod print;
 pub mod insensitive_sort;
 
 pub mod group_anagrams;
+
+pub mod top_k_frequent;

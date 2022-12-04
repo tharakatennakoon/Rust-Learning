@@ -43,3 +43,49 @@ macro_rules! compr {
         }
     };
 }
+
+#[macro_export]
+macro_rules! new_map {
+    ($($key:expr, $value:expr);*) => {
+        {
+            let mut hmap = HashMap::new();
+
+            $(
+                hmap.insert($key, $value);
+            )*
+
+            hmap
+        }
+    };
+}
+
+#[macro_export]
+macro_rules! calc_variadic {
+    (eval $e:expr) => {
+        {
+            let _val : usize = $e;
+
+            println!("{} = {}", stringify!($e), $e);
+        }
+    };
+
+    (eval $e:expr, $(eval $es:expr),+) => {
+        {
+            calc_variadic!{eval $e}
+            calc_variadic!{$(eval $es),+}
+        }
+    }
+}
+
+#[macro_export]
+macro_rules! calc_repeat {
+    ($(eval $e:expr),+) => {
+        {
+            $(
+                let _val : usize = $e;
+
+                println!("{} = {}", stringify!($e), _val);
+            )*
+        }
+    };
+}
